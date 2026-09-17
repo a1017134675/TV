@@ -1,2 +1,3 @@
-台港澳,#genre#,DE=3
-中天新闻,http://xiangxiws.vip:6777/qlw.php?key=qq%E7%BE%A4746405779&id=ztxw
+#EXTM3U
+#EXTINF:-1 group-title="台港澳",中天新闻
+http://xiangxiws.vip:6777/qlw.php?key=qq%E7%BE%A4746405779&id=ztxw
