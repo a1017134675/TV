@@ -1,4 +1,7 @@
-台港澳,#genre#,DE=3
+香港澳门,#genre#,DE=3
+翡翠台,http://gd.wsd.gd.cn:1698/hls/92/index.m3u8
+翡翠台,http://116.77.239.26:44300/tsfile/live/0141_1.m3u8
+翡翠台,http://211.97.63.3:3443/hls/541/index.m3u8
 凤凰中文：https://tv.iill.top/jd/fhzw
 凤凰资讯：https://tv.iill.top/jd/fhzx
 凤凰香港：http://103.95.24.37:880/fhxgt.m3u8
