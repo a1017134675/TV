@@ -1,11 +1,113 @@
-台湾xx直播台,#genre#
-happy台,http://live.urren.net:80/live/4e991600f2f556b69f26e00d678ff782.flv
-香蕉台,http://live.urren.net:80/live/5b0bd61e9a4aa9ee4b16443c162d1970.flv
-惊艳台,http://live.urren.net:80/live/69653f64d4d2ca3438539699830006d3.flv
-潘朵拉台,http://live.urren.net:80/live/0f2f57f9cf31a967855a552d25fbd499.flv
-彩虹台,http://live.urren.net:80/live/a950c7e6f771d5f19894d1f35e434960.flv
-极限台,http://live.urren.net:80/live/95752691dec60c603e57864a259b718d.flv
-K频道,http://live.urren.net:80/live/96f2bd46b9db91a544168d779a2756bf.flv
-E频道,http://live.urren.net:80/live/712c34cea5927a4667e653eea6fc3c6d.flv
-松视3,http://live.urren.net:80/live/51fb1c059c2e54f4909b9c0b4f7a5e84.flv
-松视1,http://live.urren.net:80/live/e14feec32cd4d9427810bc00fee583a2.flv
+#EXTM3U
+#EXT-X-APP APTV
+#EXT-X-APTV-TYPE remote
+#EXT-X-SUB-URL https://pan.jl8.top/down.php/41086e57686776d9b64f3a223f438ee6.txt
+
+#EXTINF:-1 group-title="央视频道",CCTV1
+http://www.hiiptv.cn:6060/200000001898/460000089800010144/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV2
+http://www.hiiptv.cn:6060/200000001898/460000089800010211/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://www.hiiptv.cn:6060/200000001898/460000089800010212/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://www.hiiptv.cn:6060/200000001898/460000089800010017/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://www.hiiptv.cn:6060/200000001898/460000089800010145/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://www.hiiptv.cn:6060/200000001898/460000089800010214/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://www.hiiptv.cn:6060/200000001898/460000089800010215/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://www.hiiptv.cn:6060/200000001898/460000089800010216/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV9
+http://www.hiiptv.cn:6060/200000001898/460000089800010052/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://www.hiiptv.cn:6060/200000001898/460000089800010203/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://www.hiiptv.cn:6060/200000001898/460000089800010092/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV12
+http://www.hiiptv.cn:6060/200000001898/460000089800010205/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://www.hiiptv.cn:6060/200000001898/460000089800010093/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://www.hiiptv.cn:6060/200000001898/460000089800010207/1.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://www.hiiptv.cn:6060/200000001898/460000089800010094/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.hiiptv.cn:6060/200000001898/460000089800010142/.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV17
+http://www.hiiptv.cn:6060/200000001898/460000089800010210/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",北京卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010143/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",湖南卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010058/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",江苏卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010059/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",东方卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010054/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",浙江卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010070/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",广东卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010055/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",湖北卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010057/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",甘肃卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010098/.m3u8?
+#EXTINF:-1 group-title="卫视频道",青海卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010111/.m3u8?
+#EXTINF:-1 group-title="卫视频道",山东卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010066/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",辽宁卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010061/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",河北卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010101/.m3u8?
+#EXTINF:-1 group-title="卫视频道",安徽卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010041/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",深圳卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010068/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",贵州卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010100/.m3u8?
+#EXTINF:-1 group-title="卫视频道",天津卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010069/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",东南卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010096/.m3u8?
+#EXTINF:-1 group-title="卫视频道",黑龙江卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010056/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",金鹰纪实
+http://www.hiiptv.cn:6060/200000001898/460000089800010106/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",山西卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010114/.m3u8?
+#EXTINF:-1 group-title="卫视频道",云南卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010119/.m3u8?
+#EXTINF:-1 group-title="卫视频道",陕西卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010113/.m3u8?
+#EXTINF:-1 group-title="卫视频道",广西卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010099/.m3u8?
+#EXTINF:-1 group-title="卫视频道",江西卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010060/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",内蒙古卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010109/.m3u8?
+#EXTINF:-1 group-title="卫视频道",吉林卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010075/.m3u8?
+#EXTINF:-1 group-title="卫视频道",四川卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010115/.m3u8?
+#EXTINF:-1 group-title="卫视频道",重庆卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010053/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",宁夏卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010110/.m3u8?
+#EXTINF:-1 group-title="卫视频道",新疆卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010116/.m3u8?
+#EXTINF:-1 group-title="卫视频道",河南卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010071/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",西藏卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010123/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",大湾区卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010108/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",广东珠江
+http://www.hiiptv.cn:6060/200000001898/460000089800010091/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",超级综艺
+http://www.hiiptv.cn:6060/200000001898/460000089800010062/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",海南卫视
+http://www.hiiptv.cn:6060/200000001898/460000089800010083/1.m3u8?
+#EXTINF:-1 group-title="卫视频道",超级体育
+http://www.hiiptv.cn:6060/200000001898/460000089800010063/1.m3u8?
