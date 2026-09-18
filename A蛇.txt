@@ -190,6 +190,7 @@ CGTN俄语,http://mg.cttv.vip/609006446
 CGTN,http://mg.cttv.vip/609017205
 
 卫视,#genre#,DE=3
+湖南卫视,http://111.8.224.6:9999/tsfile/live/1009_1.m3u8?key=txiptv&playlive=1&authid=0
 东方卫视,http://mg.cttv.vip/651632648
 江苏卫视,http://mg.cttv.vip/623899368
 广东卫视,http://mg.cttv.vip/608831231
@@ -214,8 +215,11 @@ CGTN,http://mg.cttv.vip/609017205
 黑龙江卫视,http://mg.cttv.vip/738906901
 
 地方台,#genre#,DE=3
+广东珠江,http://219.137.203.34:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
+广东公共,http://120.198.86.251:9901/tsfile/live/1010_1.m3u8?key=txiptv&playlive=1&authid=0
 梅州1,http://120.238.87.243:9901/tsfile/live/1003_1.m3u8?key=txiptv&playlive=1&authid=0
 丰顺综合,http://120.238.87.243:9901/tsfile/live/1100_1.m3u8?key=txiptv&playlive=1&authid=0
+五华,http://120.238.87.243:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
 上海新闻综合,http://mg.cttv.vip/651632657
 上海第一财经,http://mg.cttv.vip/608780988
 南京新闻综合频道,http://mg.cttv.vip/838109047
