@@ -1,0 +1,204 @@
+APK 当前远程配置中的直播源入口完整清单
+来源：tvdc.json（核对日期：2026-09-18）
+配置项总数：65
+完全不同的 URL 数：63
+
+01. 🛰️全球电视直播
+    https://gh-proxy.org/https://raw.githubusercontent.com/tianze889/tvds/refs/heads/main/fyzb.txt
+
+02. 📢资源宝藏库-制作维护
+    http://rihou.cc:555/gggg.nzk
+
+03. 🎠香港频道
+    https://live.hacks.tools/tv/ipv4/categories/hong_kong.m3u
+
+04. 👽台湾频道
+    https://live.hacks.tools/tv/ipv4/categories/taiwan.m3u
+
+05. 🛫澳门频道
+    https://live.hacks.tools/tv/ipv4/categories/macau.m3u
+
+06. 🛒河南组播
+    https://gh-proxy.com/https://raw.githubusercontent.com/q1017673817/iptvz/refs/heads/main/zubo_all.txt
+
+07. 🌈凤凰MoMo
+    https://gh-proxy.com/https://raw.githubusercontent.com/jn950/live/refs/heads/main/tv/pllive.txt
+
+08. ☀️develop202
+    https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt
+
+09. ☃️广东iptv4
+    https://gh-proxy.org/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt
+
+10. 🔥火麒麟interface
+    https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt
+
+11. 🛫北京rtp
+    https://raw.giteeusercontent.com/yuweirong6684/tv-live-streaming-source/raw/master/rtp.txt
+
+12. ✨lwr851
+    https://gitee.com/lwr851/live/raw/master/iptv.m3u
+
+13. 🎞️全球电视
+    https://live.hacks.tools/tv/iptv4.txt
+
+14. 📡国内电视
+    https://live.hacks.tools/tv/iptv4.m3u
+
+15. 🛰️国际电视
+    https://live.hacks.tools/iptv/index.m3u
+
+16. 🌏全球10000+频道
+    https://bestiptv.hacks.tools/api/download?type=all&slug=index
+
+17. 🏀体育赛事
+    http://43.251.226.110:9991/qm0jue
+
+18. 🚓广东联通
+    https://gitee.com/hw2837/iptv/raw/master/hw
+
+19. 🐨港台测试
+    https://gitee.com/zwssina/yunduanyuan/raw/master/SB
+
+20. 🪱环球smart
+    https://tmxk.pp.ua/smart-cn.m3u
+
+21. 🌊海外电视
+    https://vip.iptv365.org/live2025.txt
+
+22. 🌞Gather电视直播
+    https://tv.iill.top/m3u/Gather
+
+23. 🍋橙子电视1
+    https://www.iyouhun.com/tv/myIPTV/ipv4.m3u
+
+24. 🍋橙子电视2
+    https://gh-proxy.com/https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u
+
+25. 🛰️讴歌直播
+    https://xn--dkw0c.v.nxog.top/m/tv/?ou=20b
+
+26. 🌍小橙子易看
+    http://117.72.68.25:9230/latest.txt
+
+27. 🪭小橙子iptv
+    https://www.iyouhun.com/tv/iptv-api/result.m3u
+
+28. 📤依依发发
+    https://gh-proxy.org/https:/raw.githubusercontent.com/fafa002/yf2025/refs/heads/main/yiyifafa.txt
+
+29. 📺全国组播
+    https://d.kstore.dev/download/8344/全国组播.txt
+
+30. 📡上海5266
+    https://5266.kstore.space/xiangxichuanshuo.txt
+
+31. 🎤汕头电信
+    https://freetv.fun/test_channels_china_original_new.txt
+
+32. 🌍港奥台国际
+    http://tv123.vvvv.ee/tv.m3u
+
+33. 🤖74直播源
+    https://im5k.fun/vip.m3u
+
+34. 🌃香港hong_kong
+    https://t.freetv.fun/m3u/playlist_original.txt
+
+35. 🛰️港台直播
+    https://feer-cdn-bp.xpnb.qzz.io/xnkl.txt
+
+36. 🛰️港台直播
+    https://feer-cdn-bp.xpnb.qzz.io/xnkl.txt
+
+37. 💳卡卡西线路
+    https://gh-proxy.com/https://raw.githubusercontent.com/kakaxi-1/IPTV/main/ipv4.txt
+
+38. 🛩️高清港澳x22c
+    https://raw.bgithub.xyz/x22c/okk/refs/heads/master/output/ipv4/result.m3u
+
+39. 🐉青龙电视
+    http://38.75.136.137:88/api/tvlist.php
+
+40. 🗼广东电信iptv
+    https://gitee.com/hw2837/iptv/raw/master/iptv
+
+41. 📺港澳极速秒播
+    https://gh-proxy.com/https://raw.githubusercontent.com/fleung49/star/refs/heads/main/mit
+
+42. 🔋电信Kimentanm
+    https://raw.bgithub.xyz/Kimentanm/aptv/refs/heads/master/m3u/iptv.m3u
+
+43. 🌸北京itvlist
+    https://gh-proxy.org/https:/raw.githubusercontent.com/mzky/checklist/refs/heads/master/itvlist.m3u
+
+44. Ⓜ️咪咕秒播migu
+    http://www.52top.com.cn:678/downloads/migu.txt
+
+45. ⛈️暮雨直播
+    https://4key.cn/FP
+
+46. 📠迪基直播
+    http://1.94.31.214/live/live9/dgtv.txt
+
+47. 🐦‍🔥蜂巢综合
+    https://pan.ymxx.net/f/l8PIv/444.txt
+
+48. 🪻蜂巢最新
+    https://pan.ymxx.net/f/x5BFz/555.txt
+
+49. 🤽体育直播
+    http://101.34.236.223:1999
+
+50. 🌅晴天电视
+    http://rihou.cc:567/qtsd
+
+51. 🐼熊猫电视直播
+    https://iptv.catvod.com/tv.m3u
+
+52. 🌾直播线路-米米
+    https://gitee.com/yimi321/tv/raw/master/tv.png
+
+53. 🐅欢乐直播-虎牙
+    https://gongdian.top/tv/Mursor/huyayqk.m3u
+
+54. 🐟欢乐直播-斗鱼
+    https://gongdian.top/tv/Mursor/douyuyqk.m3u
+
+55. 🪼直播线路-CXS
+    https://ghfast.top/https://raw.githubusercontent.com/q1017673817/iptvz/refs/heads/main/zubo_all.txt
+
+56. ⛰️山东地方台
+    http://www.52top.com.cn:678/play/山东地方/sdql.php
+
+57. 🎞️点播-万部电影
+    https://pan.ymxx.net/f/0g1HE/%E4%B8%87%E9%83%A8%E7%94%B5%E5%BD%B110000.txt
+
+58. 🧐直播线路-咕咕
+    https://ghfast.top/https://raw.githubusercontent.com/cyh92/live/refs/heads/main/source/migu.txt
+
+59. 📏临测线路
+    https://pan.ymxx.net/f/vBMSZ/临时测试.txt
+
+60. 🛰️港澳专线
+    https://ghfast.top/https://raw.githubusercontent.com/mengxianshengaaa/IPTV/refs/heads/main/网络收集.txt
+
+61. 📡港澳专享bbxx
+    https://ghproxy.net/raw.githubusercontent.com/kimwang1978/collect-txt/refs/heads/main/bbxx.txt
+
+62. 🏞️风云直播
+    http://iptv.4666888.xyz/FYTV.m3u
+
+63. 🧑🏻‍🌾♾️🍄PizazzGY🧑🏻‍🌾
+    https://raw.bgithub.xyz/PizazzGY/TV/refs/heads/master/output/ipv4/result.txt
+
+64. ♥资源宝库🌅
+    https://cccimg.com/down.php/135a1c4e04ed20021ce9e0547c87000d.txt
+
+65. 🐟🍄szwxk🍄🐟
+    https://gitee.com/szwxk/watch-television/raw/master/wxk1.m3u
+
+重复说明：
+- develop202 与 火麒麟interface：完全相同 URL。
+- 港台直播：在 tvdc.json 中完全重复出现两次。
+- 河南组播 与 直播线路-CXS：代理域名不同，但都转向 q1017673817/iptvz 的 zubo_all.txt。
