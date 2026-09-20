@@ -202,3 +202,6 @@ APK 当前远程配置中的直播源入口完整清单
 - develop202 与 火麒麟interface：完全相同 URL。
 - 港台直播：在 tvdc.json 中完全重复出现两次。
 - 河南组播 与 直播线路-CXS：代理域名不同，但都转向 q1017673817/iptvz 的 zubo_all.txt。
+
+
+QQ里面来的：https://jsnzkpg.com 
