@@ -1,0 +1,83 @@
+# ==========================================
+# Shadowrocket 轻量分流配置
+# 目标：
+# 1. 国内直连
+# 2. 国外代理
+# 3. OpenAI / ChatGPT 固定美国节点
+# 4. Telegram / YouTube 自动走低延迟节点
+# 5. Netflix 可单独选择节点
+# 6. 不开启 MITM / Rewrite / Script
+# ==========================================
+
+[General]
+
+# 避免系统服务不必要地经过代理
+bypass-system = true
+
+# 局域网直连
+skip-proxy = localhost,*.local,captive.apple.com,10.0.0.0/8,127.0.0.1/32,172.16.0.0/12,192.168.0.0/16
+
+# DNS失败时直接使用系统DNS
+fallback-dns-server = system
+
+
+[Proxy Group]
+
+# 普通国外流量：
+# 每30分钟测试一次，不频繁测速，减少后台请求
+🚀 自动代理 = url-test,url=http://www.gstatic.com/generate_204,interval=1800,tolerance=100,timeout=5,policy-regex-filter=.*
+
+# OpenAI固定美国节点
+# 导入后进入这个策略组，手动选一个稳定的美国节点
+🇺🇸 OpenAI-US = select,policy-regex-filter=US|USA|United States|America|美国|美西|美东|洛杉矶|西雅图|圣何塞|旧金山|纽约
+
+# Netflix单独控制
+🎬 Netflix = select,🚀 自动代理,🇺🇸 OpenAI-US
+
+
+[Rule]
+
+# -----------------------
+# OpenAI / ChatGPT
+# 固定美国节点
+# -----------------------
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🇺🇸 OpenAI-US
+
+
+# -----------------------
+# Telegram
+# -----------------------
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,🚀 自动代理
+
+
+# -----------------------
+# YouTube
+# -----------------------
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/YouTube/YouTube.list,🚀 自动代理
+
+
+# -----------------------
+# Netflix
+# -----------------------
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🎬 Netflix
+
+
+# -----------------------
+# 中国网站直连
+# -----------------------
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China.list,DIRECT
+
+# 中国 IP 直连
+GEOIP,CN,DIRECT
+
+
+# -----------------------
+# 其他流量
+# -----------------------
+
+FINAL,🚀 自动代理
