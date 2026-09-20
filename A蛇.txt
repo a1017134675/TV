@@ -1986,6 +1986,42 @@ BBCワールドニュース(JP),http://iptvpro.pw:35451//加QQ1078393318/9786904
 
 新加坡,#genre#
 CNA,http://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8
+Channel5(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/598.ts
+Channel8(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/599.ts
+ChannelU(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/600.ts
+Suria(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/601.ts
+Vasantham(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/602.ts
+E乐台E-Le(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/604.ts
+佳乐台JiaLe(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/603.ts
+如意台RUYI(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/721.ts
+Hub娱家VVDrama(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/605.ts
+Hub都会台ECity(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/606.ts
+HBO(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/610.ts
+HBOSignature(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/611.ts
+HBOFamily(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/612.ts
+HBOHits(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/613.ts
+Cinemax(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/614.ts
+CinemaOneGlobal(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/617.ts
+CM+天映频道(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/616.ts
+天映频道CelestialMovies(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/609.ts
+HitsMovies(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/615.ts
+AstroPrima(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/632.ts
+AstroRia(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/631.ts
+AstroSensasi(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/630.ts
+AstroWarna(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/629.ts
+DiscoveryChannel(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/618.ts
+HGTV(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/623.ts
+History(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/624.ts
+NAT_GEO(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/626.ts
+BBCCbeebies(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/621.ts
+BBCEarth(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/619.ts
+BBCLifestyle(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/620.ts
+Travelxp(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/625.ts
+HITS(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/622.ts
+KIX(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/647.ts
+tvN(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/628.ts
+Lifetime(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/627.ts
+TVB星河(中)(SG),http://iptvpro.pw:35451//加QQ1078393318/978690431/607.ts
 
 韩国,#genre#
 KR_Arirang World,http://amdlive.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8
