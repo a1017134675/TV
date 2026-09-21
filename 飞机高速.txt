@@ -1,18 +1,92 @@
+# ==================================================
+# Shadowrocket 轻量高速版
+#
+# Google / Gemini：手动选择 美国 / 日本 / 新加坡具体节点
+# ChatGPT / OpenAI：手动选择 美国 / 日本 / 新加坡具体节点
+# YouTube / Telegram / 其他国外流量：自动低延迟
+# 中国大陆：DIRECT
+#
+# 不启用 MITM / Rewrite / Script
+# ==================================================
+
+
+[General]
+
+# 系统兼容
+bypass-system = true
+
+# 本机 / 局域网
+skip-proxy = localhost,*.local,captive.apple.com,10.0.0.0/8,127.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+
+# DNS保持简单
+dns-server = system
+fallback-dns-server = system
+
+# 减少IPv6兼容变量
+ipv6 = false
+prefer-ipv6 = false
+
+# 正常接受私有IP解析
+private-ip-answer = true
+
+
+
+[Proxy Group]
+
+# ==================================================
+# 普通国外网站
+#
+# 自动选择低延迟节点
+# 10分钟重新测试
+# 50ms公差，避免因为几毫秒差异频繁换IP
+# ==================================================
+
+🚀 自动代理 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=.*
+
+
+# ==================================================
+# ChatGPT
+#
+# 完全手动选择具体节点
+# 只显示：美国 / 日本 / 新加坡
+# 不自动切换出口IP
+# ==================================================
+
+🤖 ChatGPT = select,url=http://www.gstatic.com/generate_204,timeout=5,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|日本|新加坡|狮城|獅城|United States|USA|Japan|Singapore|洛杉矶|洛杉磯|西雅图|西雅圖|圣何塞|聖何塞|旧金山|舊金山|纽约|紐約|东京|東京|大阪|(^|[ _-])US([0-9 _-]|$)|(^|[ _-])JP([0-9 _-]|$)|(^|[ _-])SG([0-9 _-]|$)
+
+
+# ==================================================
+# Google / Gemini
+#
+# 完全手动选择具体节点
+# Google和Gemini使用同一个出口IP
+# 防止出现Google检测到两个IP的情况
+# ==================================================
+
+🔎 Google = select,url=http://www.gstatic.com/generate_204,timeout=5,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|日本|新加坡|狮城|獅城|United States|USA|Japan|Singapore|洛杉矶|洛杉磯|西雅图|西雅圖|圣何塞|聖何塞|旧金山|舊金山|纽约|紐約|东京|東京|大阪|(^|[ _-])US([0-9 _-]|$)|(^|[ _-])JP([0-9 _-]|$)|(^|[ _-])SG([0-9 _-]|$)
+
+
+
 [Rule]
 
-# ------------------------------
+# ==================================================
 # 局域网
-# ------------------------------
+# ==================================================
+
 IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
 IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
 IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
 
 
-# ------------------------------
+
+# ==================================================
 # ChatGPT / OpenAI
-# 手动选择具体节点
-# ------------------------------
+#
+# 手动固定具体节点
+# force-remote-dns减少本地DNS干扰
+# ==================================================
+
 DOMAIN-SUFFIX,chatgpt.com,🤖 ChatGPT,force-remote-dns
 DOMAIN-SUFFIX,openai.com,🤖 ChatGPT,force-remote-dns
 DOMAIN-SUFFIX,oaistatic.com,🤖 ChatGPT,force-remote-dns
@@ -21,59 +95,97 @@ DOMAIN-SUFFIX,oaiusercontent.com,🤖 ChatGPT,force-remote-dns
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 ChatGPT
 
 
-# ------------------------------
+
+# ==================================================
 # Gemini
-# ------------------------------
-DOMAIN,gemini.google.com,✨ Google,force-remote-dns
-DOMAIN,robinfrontend-pa.googleapis.com,✨ Google,force-remote-dns
-DOMAIN,webchannel-robinfrontend-pa.googleapis.com,✨ Google,force-remote-dns
-DOMAIN,generativelanguage.googleapis.com,✨ Google,force-remote-dns
-DOMAIN-SUFFIX,ai.google.dev,✨ Google,force-remote-dns
-DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,✨ Google,force-remote-dns
+#
+# 必须在普通Google规则之前
+# Google/Gemini统一使用同一个手动节点
+# ==================================================
 
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,✨ Google
+DOMAIN,gemini.google.com,🔎 Google,force-remote-dns
+DOMAIN,robinfrontend-pa.googleapis.com,🔎 Google,force-remote-dns
+DOMAIN,webchannel-robinfrontend-pa.googleapis.com,🔎 Google,force-remote-dns
+DOMAIN,generativelanguage.googleapis.com,🔎 Google,force-remote-dns
+
+DOMAIN-SUFFIX,ai.google.dev,🔎 Google,force-remote-dns
+DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,🔎 Google,force-remote-dns
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🔎 Google
 
 
-# ------------------------------
+
+# ==================================================
 # YouTube
-# 放在普通 Google 之前
-# 仍然自动选择低延迟节点
-# ------------------------------
+#
+# 视频流量继续自动低延迟
+# 放在普通Google规则之前
+# ==================================================
+
+DOMAIN-SUFFIX,youtube.com,🚀 自动代理,force-remote-dns
+DOMAIN-SUFFIX,googlevideo.com,🚀 自动代理,force-remote-dns
+DOMAIN-SUFFIX,ytimg.com,🚀 自动代理,force-remote-dns
+
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/YouTube/YouTube.list,🚀 自动代理
 
 
-# ------------------------------
-# Google 核心服务
-# 和 Gemini 使用同一个手动节点
-# 防止再次出现两个不同出口 IP
-# ------------------------------
-DOMAIN-SUFFIX,google.com,✨ Google,force-remote-dns
-DOMAIN-SUFFIX,googleapis.com,✨ Google,force-remote-dns
-DOMAIN-SUFFIX,gstatic.com,✨ Google,force-remote-dns
-DOMAIN-SUFFIX,googleusercontent.com,✨ Google,force-remote-dns
+
+# ==================================================
+# 普通Google服务
+#
+# Google搜索、登录、Gmail、Gemini相关Google接口
+# 全部固定到你手动选的同一个节点
+#
+# 这样避免再次出现：
+# IP A ≠ IP B
+# ==================================================
+
+DOMAIN-SUFFIX,google.com,🔎 Google,force-remote-dns
+DOMAIN-SUFFIX,googleapis.com,🔎 Google,force-remote-dns
+DOMAIN-SUFFIX,gstatic.com,🔎 Google,force-remote-dns
+DOMAIN-SUFFIX,googleusercontent.com,🔎 Google,force-remote-dns
+DOMAIN-SUFFIX,gmail.com,🔎 Google,force-remote-dns
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,🔎 Google
 
 
-# ------------------------------
+
+# ==================================================
 # Telegram
-# ------------------------------
+# 自动低延迟
+# ==================================================
+
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,🚀 自动代理
 
 
-# ------------------------------
+
+# ==================================================
 # Netflix
-# ------------------------------
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🎬 Netflix
+# 自动低延迟
+# ==================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🚀 自动代理
 
 
-# ------------------------------
-# 中国大陆
-# ------------------------------
+
+# ==================================================
+# 中国大陆域名
+# ==================================================
+
 DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China_Domain.list,DIRECT
+
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China.list,DIRECT
+
+
+# 中国大陆IP
 GEOIP,CN,DIRECT
 
 
-# ------------------------------
-# 其他国外网站
-# ------------------------------
+
+# ==================================================
+# 其余未匹配国外流量
+#
+# 自动选择低延迟节点
+# ==================================================
+
 FINAL,🚀 自动代理
