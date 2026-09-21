@@ -1,29 +1,21 @@
 # ============================================================
-# Shadowrocket - 自动最低延迟 / AI 专用分流
+# Shadowrocket
+#
+# 普通国外：
+#   自动选择 gstatic 测试延迟最低节点
+#
+# AI：
+#   美国 / 日本 / 新加坡
+#   不追求最低延迟
+#   只做对应 AI 服务可达性检测
 #
 # URL Test：
-# 间隔：180 秒
-# 超时：5 秒
-# 公差：0 ms
-# 测试：http://www.gstatic.com/generate_204
+# 普通国外：
+#   interval = 180
+#   timeout = 5
+#   tolerance = 0
 #
-# 设计：
-# 国内流量       -> DIRECT
-# 国外普通流量   -> 🚀 国外自动
-# 国外 AI        -> 🤖 AI自动
-#
-# AI自动只允许：
-# 🇸🇬 新加坡
-# 🇯🇵 日本
-# 🇺🇸 美国
-#
-# 不修改：
-# DNS
-# IPv6
-# MTU
-# TCP
-# QUIC
-# HTTP/3
+# 不修改 DNS / MTU / TCP / QUIC / HTTP3
 # ============================================================
 
 
@@ -31,200 +23,227 @@
 
 
 # ============================================================
-# 🚀 国外自动
+# 国外普通流量
 #
-# 所有正常代理节点一起测速。
+# url-test：
+# 自动选择测试延迟最低节点
+#
 # tolerance=0：
-# 不保留 50ms 公差，只要测试结果出现更优节点即可切换。
-#
-# 排除：
-# 流量信息 / 套餐 / 到期 / 官网 / 客服等非节点项目
+# 不保留延迟公差
 # ============================================================
 
 🚀 国外自动 = url-test,url=http://www.gstatic.com/generate_204,interval=180,timeout=5,tolerance=0,select=0,policy-regex-filter=(?i)^((?!(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).)*$
 
 
 # ============================================================
-# 🤖 AI自动
+# ChatGPT / OpenAI
 #
-# 新加坡 + 日本 + 美国
-# 所有符合地区条件的节点放入同一个测速池。
+# fallback：
+# 重点是可用性。
+# 当前节点检测不可用后自动换下一可用节点。
 #
-# 不设置：
-# 美国优先
-# 日本优先
-# 新加坡优先
-#
-# 谁当前测试延迟最低，就选谁。
+# 只允许：
+# 新加坡 / 日本 / 美国
 # ============================================================
 
-🤖 AI自动 = url-test,url=http://www.gstatic.com/generate_204,interval=180,timeout=5,tolerance=0,select=0,policy-regex-filter=(?i)(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$))
+🤖 GPT可用 = fallback,url=https://chatgpt.com,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
-# 分流规则
-#
-# Shadowrocket 从上往下匹配。
-#
-# AI 必须放在国内/国外通用规则前面，
-# 避免 AI 域名提前进入其他策略。
+# Google Gemini / Google AI
 # ============================================================
 
-[Rule]
+✨ Gemini可用 = fallback,url=https://gemini.google.com,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
-# 局域网
+# Claude
 # ============================================================
 
-RULE-SET,LAN,DIRECT
-
-
-# ============================================================
-# OpenAI / ChatGPT
-# ============================================================
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 AI自动
-
-DOMAIN-SUFFIX,openai.com,🤖 AI自动
-DOMAIN-SUFFIX,chatgpt.com,🤖 AI自动
-DOMAIN-SUFFIX,oaistatic.com,🤖 AI自动
-DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI自动
-DOMAIN-SUFFIX,oaistatsig.com,🤖 AI自动
-DOMAIN-SUFFIX,openaimerge.com,🤖 AI自动
-
-DOMAIN,chatgpt.livekit.cloud,🤖 AI自动
-DOMAIN,ios.chat.openai.com,🤖 AI自动
-DOMAIN,android.chat.openai.com,🤖 AI自动
-DOMAIN,desktop.chat.openai.com,🤖 AI自动
-DOMAIN,setup.auth.openai.com,🤖 AI自动
-
-
-# ============================================================
-# Google Gemini / Google AI / AI Studio
-# ============================================================
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🤖 AI自动
-
-DOMAIN,gemini.google.com,🤖 AI自动
-DOMAIN,aistudio.google.com,🤖 AI自动
-DOMAIN,ai.google.dev,🤖 AI自动
-DOMAIN,makersuite.google.com,🤖 AI自动
-
-DOMAIN,generativelanguage.googleapis.com,🤖 AI自动
-DOMAIN,robinfrontend-pa.googleapis.com,🤖 AI自动
-DOMAIN,proactivebackend-pa.googleapis.com,🤖 AI自动
-DOMAIN,cloudcode-pa.googleapis.com,🤖 AI自动
-DOMAIN,aiplatform.googleapis.com,🤖 AI自动
-DOMAIN,alkalimakersuite-pa.clients6.google.com,🤖 AI自动
-
-DOMAIN,notebooklm.google.com,🤖 AI自动
-
-DOMAIN-SUFFIX,deepmind.com,🤖 AI自动
-DOMAIN-SUFFIX,deepmind.google,🤖 AI自动
-DOMAIN-SUFFIX,generativeai.google,🤖 AI自动
-
-
-# ============================================================
-# Claude / Anthropic
-# ============================================================
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Claude/Claude.list,🤖 AI自动
-
-DOMAIN-SUFFIX,claude.ai,🤖 AI自动
-DOMAIN-SUFFIX,claude.com,🤖 AI自动
-DOMAIN-SUFFIX,anthropic.com,🤖 AI自动
+🧠 Claude可用 = fallback,url=https://claude.ai,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # Microsoft Copilot
 # ============================================================
 
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Copilot/Copilot.list,🤖 AI自动
-
-DOMAIN,copilot.microsoft.com,🤖 AI自动
-DOMAIN,copilot.cloud.microsoft,🤖 AI自动
+🪟 Copilot可用 = fallback,url=https://copilot.microsoft.com,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
-# Grok / xAI
+# Grok
 # ============================================================
 
-DOMAIN-SUFFIX,grok.com,🤖 AI自动
-DOMAIN-SUFFIX,x.ai,🤖 AI自动
+𝕏 Grok可用 = fallback,url=https://grok.com,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # Perplexity
 # ============================================================
 
-DOMAIN-SUFFIX,perplexity.ai,🤖 AI自动
+🔎 Perplexity可用 = fallback,url=https://www.perplexity.ai,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # OpenRouter
 # ============================================================
 
-DOMAIN-SUFFIX,openrouter.ai,🤖 AI自动
+🔀 OpenRouter可用 = fallback,url=https://openrouter.ai,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # Poe
 # ============================================================
 
-DOMAIN-SUFFIX,poe.com,🤖 AI自动
+💬 Poe可用 = fallback,url=https://poe.com,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # Character.AI
 # ============================================================
 
-DOMAIN-SUFFIX,character.ai,🤖 AI自动
+🎭 CharacterAI可用 = fallback,url=https://character.ai,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
 
 
 # ============================================================
 # Meta AI
 # ============================================================
 
-DOMAIN-SUFFIX,meta.ai,🤖 AI自动
+Ⓜ️ MetaAI可用 = fallback,url=https://www.meta.ai,interval=180,timeout=5,select=0,policy-regex-filter=(?i)^(?!.*(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).*(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$)).*$
+
 
 
 # ============================================================
-# 中国大陆域名
+# Rules
+# ============================================================
+
+[Rule]
+
+
+RULE-SET,LAN,DIRECT
+
+
+# ============================================================
+# ChatGPT / OpenAI
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 GPT可用
+
+DOMAIN-SUFFIX,openai.com,🤖 GPT可用
+DOMAIN-SUFFIX,chatgpt.com,🤖 GPT可用
+DOMAIN-SUFFIX,oaistatic.com,🤖 GPT可用
+DOMAIN-SUFFIX,oaiusercontent.com,🤖 GPT可用
+DOMAIN-SUFFIX,oaistatsig.com,🤖 GPT可用
+DOMAIN-SUFFIX,openaimerge.com,🤖 GPT可用
+DOMAIN,chatgpt.livekit.cloud,🤖 GPT可用
+
+
+# ============================================================
+# Gemini / Google AI
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,✨ Gemini可用
+
+DOMAIN,gemini.google.com,✨ Gemini可用
+DOMAIN,aistudio.google.com,✨ Gemini可用
+DOMAIN,ai.google.dev,✨ Gemini可用
+DOMAIN,makersuite.google.com,✨ Gemini可用
+DOMAIN,generativelanguage.googleapis.com,✨ Gemini可用
+DOMAIN,robinfrontend-pa.googleapis.com,✨ Gemini可用
+DOMAIN,proactivebackend-pa.googleapis.com,✨ Gemini可用
+DOMAIN,cloudcode-pa.googleapis.com,✨ Gemini可用
+DOMAIN,aiplatform.googleapis.com,✨ Gemini可用
+DOMAIN,alkalimakersuite-pa.clients6.google.com,✨ Gemini可用
+DOMAIN,notebooklm.google.com,✨ Gemini可用
+
+DOMAIN-SUFFIX,deepmind.com,✨ Gemini可用
+DOMAIN-SUFFIX,deepmind.google,✨ Gemini可用
+DOMAIN-SUFFIX,generativeai.google,✨ Gemini可用
+
+
+# ============================================================
+# Claude
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Claude/Claude.list,🧠 Claude可用
+
+DOMAIN-SUFFIX,claude.ai,🧠 Claude可用
+DOMAIN-SUFFIX,claude.com,🧠 Claude可用
+DOMAIN-SUFFIX,anthropic.com,🧠 Claude可用
+
+
+# ============================================================
+# Copilot
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Copilot/Copilot.list,🪟 Copilot可用
+
+DOMAIN,copilot.microsoft.com,🪟 Copilot可用
+DOMAIN,copilot.cloud.microsoft,🪟 Copilot可用
+
+
+# ============================================================
+# Grok
+# ============================================================
+
+DOMAIN-SUFFIX,grok.com,𝕏 Grok可用
+DOMAIN-SUFFIX,x.ai,𝕏 Grok可用
+
+
+# ============================================================
+# Perplexity
+# ============================================================
+
+DOMAIN-SUFFIX,perplexity.ai,🔎 Perplexity可用
+
+
+# ============================================================
+# OpenRouter
+# ============================================================
+
+DOMAIN-SUFFIX,openrouter.ai,🔀 OpenRouter可用
+
+
+# ============================================================
+# Poe
+# ============================================================
+
+DOMAIN-SUFFIX,poe.com,💬 Poe可用
+
+
+# ============================================================
+# Character.AI
+# ============================================================
+
+DOMAIN-SUFFIX,character.ai,🎭 CharacterAI可用
+
+
+# ============================================================
+# Meta AI
+# ============================================================
+
+DOMAIN-SUFFIX,meta.ai,Ⓜ️ MetaAI可用
+
+
+# ============================================================
+# 中国大陆
 #
-# ChinaMaxNoIP：
-# 使用域名规则先判断中国大陆网站。
-#
-# 这样大部分国内网站无需走到后面的 GEOIP 判断。
+# 官方规则项目说明：
+# ChinaMaxNoIP.list     -> RULE-SET
+# ChinaMaxNoIP_Domain   -> DOMAIN-SET
 # ============================================================
 
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP.list,DIRECT
 
 DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP_Domain.list,DIRECT
 
-
-# .CN 直接连接
 DOMAIN-SUFFIX,cn,DIRECT
-
-
-# ============================================================
-# 中国大陆 IP
-#
-# no-resolve：
-# 对还没解析成 IP 的域名，不为了 GEOIP 判断
-# 额外强制触发 DNS 查询。
-#
-# 国内域名主要交给上面的 ChinaMaxNoIP。
-# ============================================================
 
 GEOIP,CN,DIRECT,no-resolve
 
 
 # ============================================================
-# 最终规则
-#
-# 上面都没有命中的流量属于普通境外流量。
-# 全部交给自动最低延迟节点。
+# 其他所有国外流量
 # ============================================================
 
 FINAL,🚀 国外自动
