@@ -1,14 +1,14 @@
 # ==================================================
 # Shadowrocket 轻量高速稳定版
 #
-# ChatGPT：手动选择 美国 / 日本 / 新加坡
-# Gemini：手动选择 美国 / 日本 / 新加坡
-# Google搜索：自动低延迟
-# YouTube：自动低延迟
-# Telegram：自动低延迟
-# Netflix：自动低延迟
-# 普通国外网站：自动低延迟
-# 国内：DIRECT
+# ChatGPT + Google + Gemini：
+#   手动选择 美国 / 日本 / 新加坡具体节点
+#
+# YouTube / Telegram / Netflix / 其他国外网站：
+#   自动选择低延迟节点
+#
+# 中国大陆：
+#   DIRECT
 #
 # 不启用 MITM / Rewrite / Script
 # ==================================================
@@ -22,11 +22,11 @@ bypass-system = true
 # 本机 / 局域网
 skip-proxy = localhost,*.local,captive.apple.com,10.0.0.0/8,127.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 
-# DNS保持简单
+# DNS 保持简单
 dns-server = system
 fallback-dns-server = system
 
-# 先关闭IPv6，减少节点/网络兼容变量
+# 稳定优先，减少 IPv6 兼容变量
 ipv6 = false
 prefer-ipv6 = false
 
@@ -37,29 +37,27 @@ private-ip-answer = true
 [Proxy Group]
 
 # ==================================================
-# 普通国外流量
+# 1. 普通国外流量
+#
 # 自动选择低延迟节点
+# 600 秒 = 10分钟测试一次
+# 50ms = 差距不明显时不频繁换节点
 # ==================================================
 
 🚀 自动代理 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=.*
 
 
 # ==================================================
-# ChatGPT
-# 手动选择具体节点
-# 仅筛选美国 / 日本 / 新加坡
+# 2. ChatGPT + Google + Gemini
+#
+# 完全手动选择具体节点
+# 只筛选 美国 / 日本 / 新加坡
+#
+# Google / Gemini / GPT 使用同一个出口IP
+# 减少 Google 出现 IP 不一致 / unusual traffic
 # ==================================================
 
-🤖 ChatGPT = select,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|United States|USA|US|日本|Japan|JP|东京|東京|大阪|新加坡|Singapore|SG|狮城|獅城
-
-
-# ==================================================
-# Gemini
-# 手动选择具体节点
-# 与普通Google搜索完全分开
-# ==================================================
-
-✨ Gemini = select,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|United States|USA|US|日本|Japan|JP|东京|東京|大阪|新加坡|Singapore|SG|狮城|獅城
+🤖 AI-Google = select,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|USA|United States|日本|Japan|东京|東京|大阪|新加坡|Singapore|狮城|獅城
 
 
 
@@ -77,54 +75,55 @@ IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
 
 
 # ==================================================
-# 2. Gemini
+# 2. ChatGPT / OpenAI
+# 与 Google / Gemini 使用同一个手动节点
+# ==================================================
+
+DOMAIN-SUFFIX,chatgpt.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,openai.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,oaistatic.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI-Google,force-remote-dns
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 AI-Google
+
+
+
+# ==================================================
+# 3. Gemini
 #
-# 必须放在普通Google规则前面
-# 确保Gemini整个会话尽量使用同一个出口
+# 放在普通 Google 规则之前
+# 补充 Gemini 常见接口
 # ==================================================
 
-DOMAIN-SUFFIX,gemini.google.com,✨ Gemini,force-remote-dns
+DOMAIN,gemini.google.com,🤖 AI-Google,force-remote-dns
 
-DOMAIN,robinfrontend-pa.googleapis.com,✨ Gemini,force-remote-dns
-DOMAIN,webchannel-robinfrontend-pa.googleapis.com,✨ Gemini,force-remote-dns
+DOMAIN,robinfrontend-pa.googleapis.com,🤖 AI-Google,force-remote-dns
+DOMAIN,webchannel-robinfrontend-pa.googleapis.com,🤖 AI-Google,force-remote-dns
 
-DOMAIN-SUFFIX,geller-pa.googleapis.com,✨ Gemini,force-remote-dns
-DOMAIN,alkalicore-pa.clients6.google.com,✨ Gemini,force-remote-dns
-DOMAIN,alkalimakersuite-pa.clients6.google.com,✨ Gemini,force-remote-dns
+DOMAIN,generativelanguage.googleapis.com,🤖 AI-Google,force-remote-dns
 
-DOMAIN,generativelanguage.googleapis.com,✨ Gemini,force-remote-dns
-DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,✨ Gemini,force-remote-dns
+DOMAIN-SUFFIX,geller-pa.googleapis.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,🤖 AI-Google,force-remote-dns
 
-DOMAIN,ai.google.dev,✨ Gemini,force-remote-dns
-DOMAIN,makersuite.google.com,✨ Gemini,force-remote-dns
-DOMAIN-SUFFIX,bard.google.com,✨ Gemini,force-remote-dns
-DOMAIN-SUFFIX,generativeai.google,✨ Gemini,force-remote-dns
+DOMAIN,alkalicore-pa.clients6.google.com,🤖 AI-Google,force-remote-dns
+DOMAIN,alkalimakersuite-pa.clients6.google.com,🤖 AI-Google,force-remote-dns
 
-# 上游Gemini规则作为补充
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,✨ Gemini
+DOMAIN,ai.google.dev,🤖 AI-Google,force-remote-dns
+DOMAIN,makersuite.google.com,🤖 AI-Google,force-remote-dns
 
-
-
-# ==================================================
-# 3. ChatGPT / OpenAI
-# 手动固定你选择的具体节点
-# ==================================================
-
-DOMAIN-SUFFIX,chatgpt.com,🤖 ChatGPT,force-remote-dns
-DOMAIN-SUFFIX,openai.com,🤖 ChatGPT,force-remote-dns
-DOMAIN-SUFFIX,oaistatic.com,🤖 ChatGPT,force-remote-dns
-DOMAIN-SUFFIX,oaiusercontent.com,🤖 ChatGPT,force-remote-dns
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 ChatGPT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🤖 AI-Google
 
 
 
 # ==================================================
 # 4. YouTube
-# 自动选择低延迟节点
+#
+# 仍然自动低延迟
+# 必须放在普通 Google 规则前面
 # ==================================================
 
 DOMAIN-SUFFIX,youtube.com,🚀 自动代理,force-remote-dns
+DOMAIN-SUFFIX,youtu.be,🚀 自动代理,force-remote-dns
 DOMAIN-SUFFIX,googlevideo.com,🚀 自动代理,force-remote-dns
 DOMAIN-SUFFIX,ytimg.com,🚀 自动代理,force-remote-dns
 
@@ -133,24 +132,25 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 
 
 # ==================================================
-# 5. 普通Google
+# 5. 普通 Google
 #
-# Gemini已在上面先匹配
-# 剩余Google搜索/服务全部自动低延迟
+# Google 搜索 / Gmail / Google API 等
+# 和 GPT / Gemini 共用同一个出口
 # ==================================================
 
-DOMAIN-SUFFIX,google.com,🚀 自动代理,force-remote-dns
-DOMAIN-SUFFIX,googleapis.com,🚀 自动代理,force-remote-dns
-DOMAIN-SUFFIX,gstatic.com,🚀 自动代理,force-remote-dns
-DOMAIN-SUFFIX,googleusercontent.com,🚀 自动代理,force-remote-dns
-DOMAIN-SUFFIX,gmail.com,🚀 自动代理,force-remote-dns
+DOMAIN-SUFFIX,google.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,googleapis.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,gstatic.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,googleusercontent.com,🤖 AI-Google,force-remote-dns
+DOMAIN-SUFFIX,gmail.com,🤖 AI-Google,force-remote-dns
 
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,🚀 自动代理
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,🤖 AI-Google
 
 
 
 # ==================================================
 # 6. Telegram
+# 自动低延迟
 # ==================================================
 
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,🚀 自动代理
@@ -159,6 +159,7 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 
 # ==================================================
 # 7. Netflix
+# 自动低延迟
 # ==================================================
 
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🚀 自动代理
@@ -178,7 +179,7 @@ GEOIP,CN,DIRECT
 
 
 # ==================================================
-# 9. 其余流量
+# 9. 其他国外流量
 # 自动低延迟
 # ==================================================
 
