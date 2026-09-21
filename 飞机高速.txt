@@ -1,44 +1,40 @@
-[Proxy Group]
+[Rule]
 
-# ==================================================
-# 网页/普通国外流量
-# 自动选择低延迟节点
-# ==================================================
-
-⚡ 网页低延迟 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=.*
-
-
-# ==================================================
-# 各地区内部自动选低延迟节点
-# ==================================================
-
-🇭🇰 香港高速 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=🇭🇰|香港|HK|Hong Kong
-
-🇯🇵 日本高速 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=🇯🇵|日本|JP|Japan|东京|東京|大阪
-
-🇸🇬 新加坡高速 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=🇸🇬|新加坡|狮城|獅城|SG|Singapore
-
-🇺🇸 美国高速 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=🇺🇸|美国|美國|US|USA|United States|America|洛杉矶|洛杉磯|西雅图|西雅圖|圣何塞|聖何塞|纽约|紐約
+# 局域网
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
 
 
-# ==================================================
-# YouTube / 大流量视频
-#
-# 这里不是让 Shadowrocket 假装测带宽。
-# 每个地区内部自动挑最快响应节点；
-# 你只需实际试看一次哪个地区 4K 最稳定。
-# ==================================================
-
-📺 视频高速 = select,🇭🇰 香港高速,🇯🇵 日本高速,🇸🇬 新加坡高速,🇺🇸 美国高速,⚡ 网页低延迟
+# ChatGPT / OpenAI
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🇺🇸 AI-US
 
 
-# ==================================================
-# AI
-# 固定美国节点，避免地区/IP频繁变化
-# ==================================================
+# Gemini
+DOMAIN,gemini.google.com,🇺🇸 AI-US
+DOMAIN,generativelanguage.googleapis.com,🇺🇸 AI-US
+DOMAIN,robinfrontend-pa.googleapis.com,🇺🇸 AI-US
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🇺🇸 AI-US
 
-🇺🇸 AI-US = select,policy-regex-filter=🇺🇸|US|USA|United States|America|美国|美國|美西|美东|美東|洛杉矶|洛杉磯|西雅图|西雅圖|圣何塞|聖何塞|旧金山|舊金山|纽约|紐約
+
+# Telegram
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,🚀 自动代理
+
+
+# YouTube
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/YouTube/YouTube.list,🚀 自动代理
 
 
 # Netflix
-🎬 Netflix = select,📺 视频高速,🇺🇸 AI-US
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🎬 Netflix
+
+
+# 中国大陆
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China_Domain.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China.list,DIRECT
+GEOIP,CN,DIRECT
+
+
+# 其他全部走自动代理
+FINAL,🚀 自动代理
