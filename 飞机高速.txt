@@ -1,223 +1,230 @@
-# ==================================================
-# Shadowrocket 高速稳定版
+# ============================================================
+# Shadowrocket - 自动最低延迟 / AI 专用分流
 #
-# Google 搜索 + Gemini + ChatGPT：
-#   共用一个手动节点
-#   美国 / 日本 / 新加坡自行选择
+# URL Test：
+# 间隔：180 秒
+# 超时：5 秒
+# 公差：0 ms
+# 测试：http://www.gstatic.com/generate_204
 #
-# YouTube / Telegram / Netflix / 其他国外：
-#   自动选择低延迟节点
+# 设计：
+# 国内流量       -> DIRECT
+# 国外普通流量   -> 🚀 国外自动
+# 国外 AI        -> 🤖 AI自动
 #
-# 中国大陆：
-#   DIRECT
+# AI自动只允许：
+# 🇸🇬 新加坡
+# 🇯🇵 日本
+# 🇺🇸 美国
 #
-# 不启用 MITM / Rewrite / Script
-# ==================================================
-
-
-[General]
-
-# 系统兼容
-bypass-system = true
-
-# 本机 / 局域网
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,captive.apple.com
-
-# 按你自带 default.lsr 的稳定设置
-tun-excluded-routes = 10.0.0.0/8,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32,239.255.255.250/32,ff02::fb/128
-
-# DNS：完全参考你能正常工作的自带配置
-dns-server = system
-fallback-dns-server = system
-
-# 你的自带配置开启 IPv6，但优先 IPv4
-ipv6 = true
-prefer-ipv6 = false
-
-# DIRECT 流量不强制系统 DNS
-dns-direct-system = false
-
-# ICMP 自动响应
-icmp-auto-reply = true
-
-# 不强制执行 Rewrite
-always-reject-url-rewrite = false
-
-# 私有 IP 正常应答
-private-ip-answer = true
-
-# DIRECT DNS 失败时不要自动改走代理
-dns-direct-fallback-proxy = false
-
-# 节点不支持 UDP 时拒绝，避免意外旁路
-udp-policy-not-supported-behaviour = REJECT
-
-# 代理连接不使用本地 Host 映射
-use-local-host-item-for-proxy = false
-
+# 不修改：
+# DNS
+# IPv6
+# MTU
+# TCP
+# QUIC
+# HTTP/3
+# ============================================================
 
 
 [Proxy Group]
 
-# ==================================================
-# 1. 普通国外流量
+
+# ============================================================
+# 🚀 国外自动
 #
-# 自动选择低延迟节点
-# 600秒 = 每10分钟重新测试
-# 50ms   = 延迟差距不明显不乱切
-# 5秒    = 单节点测速超时
-# ==================================================
-
-🚀 自动代理 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=50,timeout=5,policy-regex-filter=.*
-
-
-# ==================================================
-# 2. Google + Gemini + ChatGPT
+# 所有正常代理节点一起测速。
+# tolerance=0：
+# 不保留 50ms 公差，只要测试结果出现更优节点即可切换。
 #
-# 完全手动选择具体节点
-# 只显示：
-# 美国 / 日本 / 新加坡
+# 排除：
+# 流量信息 / 套餐 / 到期 / 官网 / 客服等非节点项目
+# ============================================================
+
+🚀 国外自动 = url-test,url=http://www.gstatic.com/generate_204,interval=180,timeout=5,tolerance=0,select=0,policy-regex-filter=(?i)^((?!(剩余|流量|到期|套餐|官网|公告|客服|traffic|expire|reset)).)*$
+
+
+# ============================================================
+# 🤖 AI自动
 #
-# Google整个会话保持同一个出口
-# 避免 Gemini IP A ≠ IP B
-# ==================================================
+# 新加坡 + 日本 + 美国
+# 所有符合地区条件的节点放入同一个测速池。
+#
+# 不设置：
+# 美国优先
+# 日本优先
+# 新加坡优先
+#
+# 谁当前测试延迟最低，就选谁。
+# ============================================================
 
-🤖 AI-Google = select,policy-regex-filter=🇺🇸|🇯🇵|🇸🇬|美国|美國|日本|新加坡|狮城|獅城|USA|United States|Japan|Singapore|洛杉矶|洛杉磯|西雅图|西雅圖|圣何塞|聖何塞|旧金山|舊金山|纽约|紐約|东京|東京|大阪
+🤖 AI自动 = url-test,url=http://www.gstatic.com/generate_204,interval=180,timeout=5,tolerance=0,select=0,policy-regex-filter=(?i)(🇸🇬|新加坡|狮城|Singapore|(^|[ _\-\[\]()])SG([0-9 _\-\[\]()]|$)|🇯🇵|日本|Japan|Tokyo|Osaka|东京|東京|大阪|(^|[ _\-\[\]()])JP([0-9 _\-\[\]()]|$)|🇺🇸|美国|美國|United States|USA|Los Angeles|San Jose|Seattle|New York|Dallas|Chicago|San Francisco|洛杉矶|洛杉磯|西雅图|西雅圖|纽约|紐約|旧金山|舊金山|圣何塞|聖何塞|(^|[ _\-\[\]()])US([0-9 _\-\[\]()]|$))
 
 
+# ============================================================
+# 分流规则
+#
+# Shadowrocket 从上往下匹配。
+#
+# AI 必须放在国内/国外通用规则前面，
+# 避免 AI 域名提前进入其他策略。
+# ============================================================
 
 [Rule]
 
-# ==================================================
-# 1. 局域网
-# ==================================================
 
-IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+# ============================================================
+# 局域网
+# ============================================================
+
+RULE-SET,LAN,DIRECT
 
 
+# ============================================================
+# OpenAI / ChatGPT
+# ============================================================
 
-# ==================================================
-# 2. YouTube
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 AI自动
+
+DOMAIN-SUFFIX,openai.com,🤖 AI自动
+DOMAIN-SUFFIX,chatgpt.com,🤖 AI自动
+DOMAIN-SUFFIX,oaistatic.com,🤖 AI自动
+DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI自动
+DOMAIN-SUFFIX,oaistatsig.com,🤖 AI自动
+DOMAIN-SUFFIX,openaimerge.com,🤖 AI自动
+
+DOMAIN,chatgpt.livekit.cloud,🤖 AI自动
+DOMAIN,ios.chat.openai.com,🤖 AI自动
+DOMAIN,android.chat.openai.com,🤖 AI自动
+DOMAIN,desktop.chat.openai.com,🤖 AI自动
+DOMAIN,setup.auth.openai.com,🤖 AI自动
+
+
+# ============================================================
+# Google Gemini / Google AI / AI Studio
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🤖 AI自动
+
+DOMAIN,gemini.google.com,🤖 AI自动
+DOMAIN,aistudio.google.com,🤖 AI自动
+DOMAIN,ai.google.dev,🤖 AI自动
+DOMAIN,makersuite.google.com,🤖 AI自动
+
+DOMAIN,generativelanguage.googleapis.com,🤖 AI自动
+DOMAIN,robinfrontend-pa.googleapis.com,🤖 AI自动
+DOMAIN,proactivebackend-pa.googleapis.com,🤖 AI自动
+DOMAIN,cloudcode-pa.googleapis.com,🤖 AI自动
+DOMAIN,aiplatform.googleapis.com,🤖 AI自动
+DOMAIN,alkalimakersuite-pa.clients6.google.com,🤖 AI自动
+
+DOMAIN,notebooklm.google.com,🤖 AI自动
+
+DOMAIN-SUFFIX,deepmind.com,🤖 AI自动
+DOMAIN-SUFFIX,deepmind.google,🤖 AI自动
+DOMAIN-SUFFIX,generativeai.google,🤖 AI自动
+
+
+# ============================================================
+# Claude / Anthropic
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Claude/Claude.list,🤖 AI自动
+
+DOMAIN-SUFFIX,claude.ai,🤖 AI自动
+DOMAIN-SUFFIX,claude.com,🤖 AI自动
+DOMAIN-SUFFIX,anthropic.com,🤖 AI自动
+
+
+# ============================================================
+# Microsoft Copilot
+# ============================================================
+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Copilot/Copilot.list,🤖 AI自动
+
+DOMAIN,copilot.microsoft.com,🤖 AI自动
+DOMAIN,copilot.cloud.microsoft,🤖 AI自动
+
+
+# ============================================================
+# Grok / xAI
+# ============================================================
+
+DOMAIN-SUFFIX,grok.com,🤖 AI自动
+DOMAIN-SUFFIX,x.ai,🤖 AI自动
+
+
+# ============================================================
+# Perplexity
+# ============================================================
+
+DOMAIN-SUFFIX,perplexity.ai,🤖 AI自动
+
+
+# ============================================================
+# OpenRouter
+# ============================================================
+
+DOMAIN-SUFFIX,openrouter.ai,🤖 AI自动
+
+
+# ============================================================
+# Poe
+# ============================================================
+
+DOMAIN-SUFFIX,poe.com,🤖 AI自动
+
+
+# ============================================================
+# Character.AI
+# ============================================================
+
+DOMAIN-SUFFIX,character.ai,🤖 AI自动
+
+
+# ============================================================
+# Meta AI
+# ============================================================
+
+DOMAIN-SUFFIX,meta.ai,🤖 AI自动
+
+
+# ============================================================
+# 中国大陆域名
 #
-# 一定放在整个 Google 规则之前
-# YouTube 保持自动低延迟
-# ==================================================
-
-DOMAIN-SUFFIX,youtube.com,🚀 自动代理
-DOMAIN-SUFFIX,youtu.be,🚀 自动代理
-DOMAIN-SUFFIX,googlevideo.com,🚀 自动代理
-DOMAIN-SUFFIX,ytimg.com,🚀 自动代理
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/YouTube/YouTube.list,🚀 自动代理
-
-
-
-# ==================================================
-# 3. ChatGPT / OpenAI
+# ChinaMaxNoIP：
+# 使用域名规则先判断中国大陆网站。
 #
-# 和 Google / Gemini 使用同一个节点
-# ==================================================
+# 这样大部分国内网站无需走到后面的 GEOIP 判断。
+# ============================================================
 
-DOMAIN-SUFFIX,chatgpt.com,🤖 AI-Google
-DOMAIN-SUFFIX,openai.com,🤖 AI-Google
-DOMAIN-SUFFIX,oaistatic.com,🤖 AI-Google
-DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI-Google
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP.list,DIRECT
 
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖 AI-Google
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP_Domain.list,DIRECT
 
 
+# .CN 直接连接
+DOMAIN-SUFFIX,cn,DIRECT
 
-# ==================================================
-# 4. Gemini / Google AI
+
+# ============================================================
+# 中国大陆 IP
 #
-# 补充 Blackmatrix7 当前已知的 Gemini 漏网域名
-# 全部与 Google 搜索保持同一个出口
-# ==================================================
-
-DOMAIN,gemini.google.com,🤖 AI-Google
-
-DOMAIN,robinfrontend-pa.googleapis.com,🤖 AI-Google
-DOMAIN,webchannel-robinfrontend-pa.googleapis.com,🤖 AI-Google
-
-DOMAIN,generativelanguage.googleapis.com,🤖 AI-Google
-
-DOMAIN-SUFFIX,geller-pa.googleapis.com,🤖 AI-Google
-DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,🤖 AI-Google
-
-DOMAIN,alkalicore-pa.clients6.google.com,🤖 AI-Google
-DOMAIN,alkalimakersuite-pa.clients6.google.com,🤖 AI-Google
-
-DOMAIN,ai.google.dev,🤖 AI-Google
-DOMAIN,aistudio.google.com,🤖 AI-Google
-DOMAIN,makersuite.google.com,🤖 AI-Google
-
-DOMAIN-SUFFIX,bard.google.com,🤖 AI-Google
-DOMAIN-SUFFIX,generativeai.google,🤖 AI-Google
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,🤖 AI-Google
-
-
-
-# ==================================================
-# 5. 普通 Google
+# no-resolve：
+# 对还没解析成 IP 的域名，不为了 GEOIP 判断
+# 额外强制触发 DNS 查询。
 #
-# 重点：
-# Google 搜索现在和 Gemini / GPT 共用 AI-Google
+# 国内域名主要交给上面的 ChinaMaxNoIP。
+# ============================================================
+
+GEOIP,CN,DIRECT,no-resolve
+
+
+# ============================================================
+# 最终规则
 #
-# 不再给 Google 单独加 force-remote-dns
-# 直接采用你自带 default.lsr 的工作方式
-# ==================================================
+# 上面都没有命中的流量属于普通境外流量。
+# 全部交给自动最低延迟节点。
+# ============================================================
 
-DOMAIN-KEYWORD,google,🤖 AI-Google
-
-DOMAIN-SUFFIX,goog,🤖 AI-Google
-DOMAIN-SUFFIX,gstatic.com,🤖 AI-Google
-DOMAIN-SUFFIX,gmail.com,🤖 AI-Google
-DOMAIN-SUFFIX,ggpht.com,🤖 AI-Google
-DOMAIN-SUFFIX,googleapis.com,🤖 AI-Google
-DOMAIN-SUFFIX,googleusercontent.com,🤖 AI-Google
-DOMAIN-SUFFIX,recaptcha.net,🤖 AI-Google
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,🤖 AI-Google
-
-
-
-# ==================================================
-# 6. Telegram
-# 自动低延迟
-# ==================================================
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,🚀 自动代理
-
-
-
-# ==================================================
-# 7. Netflix
-# 自动低延迟
-# ==================================================
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Netflix/Netflix.list,🚀 自动代理
-
-
-
-# ==================================================
-# 8. 中国大陆
-# ==================================================
-
-DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China_Domain.list,DIRECT
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China.list,DIRECT
-
-GEOIP,CN,DIRECT
-
-
-
-# ==================================================
-# 9. 其他国外网站
-# 自动低延迟
-# ==================================================
-
-FINAL,🚀 自动代理
+FINAL,🚀 国外自动
