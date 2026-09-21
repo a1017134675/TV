@@ -1,0 +1,70 @@
+[General]
+# 通用设置与网络优化
+ipv6 = false
+prefer-ipv6 = false
+dns-direct-system = false
+dns-fallback-system = false
+dns-direct-fallback-proxy = true
+dns-server = system, 223.5.5.5, 119.29.29.29, 1.1.1.1, 8.8.8.8
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, captive.apple.com
+bypass-system = true
+
+[Proxy Group]
+# 1. 节点选择（总控）
+🚀 节点选择 = select, ⚡ 自动选择, 🤖 人工智能, 🇸🇬 新加坡, 🇺🇸 美国, 🇯🇵 日本, DIRECT
+
+# 2. 国外全自动最快：遍历所有节点，自动切换最低延迟节点（每300秒检测，容差50ms）
+⚡ 自动选择 = url-test, policy-regex-filter=.*, url=http://www.gstatic.com/generate_204, interval=300, tolerance=50
+
+# 3. AI专属组：严格限定仅匹配新加坡、美国、日本，并在其中自动选延迟最低的
+🤖 人工智能 = url-test, policy-regex-filter=(?i)(新加坡|狮城|SG|Singapore|美国|美|US|United States|日本|川日|东京|大阪|JP|Japan), url=http://www.gstatic.com/generate_204, interval=300, tolerance=50
+
+# 4. 地区分组（供备选）
+🇸🇬 新加坡 = url-test, policy-regex-filter=(?i)(新加坡|狮城|SG|Singapore), url=http://www.gstatic.com/generate_204, interval=300, tolerance=50
+🇺🇸 美国 = url-test, policy-regex-filter=(?i)(美国|美|US|United States), url=http://www.gstatic.com/generate_204, interval=300, tolerance=50
+🇯🇵 日本 = url-test, policy-regex-filter=(?i)(日本|川日|东京|大阪|JP|Japan), url=http://www.gstatic.com/generate_204, interval=300, tolerance=50
+
+# 5. 国内直连
+🎯 国内直连 = select, DIRECT
+
+# 6. 漏网之鱼（未命中规则的国外流量走自动最快）
+🐟 漏网之鱼 = select, ⚡ 自动选择, DIRECT
+
+[Rule]
+# === 局域网与本地直连 ===
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+
+# === AI 专属规则（包含 OpenAI、ChatGPT、Claude、Google AI / Gemini 等）===
+DOMAIN-KEYWORD,openai,🤖 人工智能
+DOMAIN-SUFFIX,chatgpt.com,🤖 人工智能
+DOMAIN-SUFFIX,oaistatic.com,🤖 人工智能
+DOMAIN-SUFFIX,oaiusercontent.com,🤖 人工智能
+DOMAIN-SUFFIX,anthropic.com,🤖 人工智能
+DOMAIN-SUFFIX,claude.ai,🤖 人工智能
+DOMAIN-SUFFIX,gemini.google.com,🤖 人工智能
+DOMAIN-SUFFIX,bard.google.com,🤖 人工智能
+DOMAIN-SUFFIX,generativelanguage.googleapis.com,🤖 人工智能
+DOMAIN-SUFFIX,ai.google.dev,🤖 人工智能
+DOMAIN-SUFFIX,deepmind.com,🤖 人工智能
+DOMAIN-SUFFIX,deepmind.google,🤖 人工智能
+DOMAIN-SUFFIX,perplexity.ai,🤖 人工智能
+DOMAIN-KEYWORD,gemini,🤖 人工智能
+
+# === 常见国内常用服务直连 ===
+DOMAIN-SUFFIX,cn,🎯 国内直连
+DOMAIN-KEYWORD,baidu,🎯 国内直连
+DOMAIN-KEYWORD,taobao,🎯 国内直连
+DOMAIN-KEYWORD,alipay,🎯 国内直连
+DOMAIN-KEYWORD,tencent,🎯 国内直连
+DOMAIN-KEYWORD,bilibili,🎯 国内直连
+DOMAIN-SUFFIX,apple.com,🎯 国内直连
+DOMAIN-SUFFIX,icloud.com,🎯 国内直连
+
+# === GEOIP 中国大陆 IP 直连 ===
+GEOIP,CN,🎯 国内直连
+
+# === 兜底分流 ===
+FINAL,🐟 漏网之鱼
