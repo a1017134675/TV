@@ -1,6 +1,4 @@
 央视直播,#genre#
-
-
 CCTV-01,http://cdn6.bkpcp.top/tl/tuiliu.php?id=cctv1
 CCTV-02,http://cdn6.bkpcp.top/tl/tuiliu.php?id=cctv2
 CCTV-03,http://cdn6.bkpcp.top/tl/tuiliu.php?id=cctv3
