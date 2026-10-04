@@ -1,14 +1,173 @@
-#!name=Spotify会员解锁@app2smile
-#!desc=解锁Premium会员
-#!icon=https://github.com/Toperlock/Quantumult/raw/main/icon/Doraemon/Doraemon-1054.png
-#!tag=app2smile
+#laojiu
+#Date: 2026.7.26
+#Author: Loon
 
+[General]
+ip-mode = dual
+ipv6-vif = auto
+dns-server = 223.5.5.5,119.29.29.29
+doh-server = https://dns.alidns.com/dns-query,https://doh.pub/dns-query
+doh3-server = h3://cloudflare-dns.com/dns-query
+sni-sniffing = true
+disable-stun = true
+dns-reject-mode = LoopbackIP
+domain-reject-mode = DNS
+udp-fallback-mode = REJECT
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+allow-wifi-access = false
+interface-mode = auto
+test-timeout = 5
+disconnect-on-policy-change = false
+internet-test-url = http://www.aliyun.com
+proxy-test-url = http://www.google.com/generate_204
+resource-parser = https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-parser.loon.min.js
+geoip-url = https://geodata.kelee.one/Country-Masaiki.mmdb
+ipasn-url = https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+[Proxy]
+[Remote Proxy]
+9f18975eb4d6e129 = https://yfjc.xyz/api/v1/client/subscribe?token=f9ffb210fc14794930d42169e5523834,udp=true,block-quic=true,fast-open=default,vmess-aead=default,skip-cert-verify=true,enabled=true,flexible-sni=false
+75371b57089e831f = https://103.14.76.98/sub/fsc/0d326d590d492115b9cd7af83288f377,udp=true,block-quic=true,fast-open=default,vmess-aead=default,skip-cert-verify=true,enabled=false,flexible-sni=false
+5cdd75699cabc10f = https://upld.zone.id/uploads/w4i449iq/123455213.txt,udp=true,block-quic=true,fast-open=default,vmess-aead=default,skip-cert-verify=true,enabled=false,flexible-sni=false
+e900a6f73e99429d = https://sub.445569.xyz,udp=true,block-quic=true,fast-open=default,vmess-aead=default,skip-cert-verify=true,enabled=false,flexible-sni=false
+1 = https://ashe1.dpdns.org/cm,udp=true,block-quic=true,fast-open=default,vmess-aead=default,skip-cert-verify=true,enabled=false,flexible-sni=false
+4ccbd85a473b3cac = https://nuue6.zz01.eu.org/scrb/60e670c97e48ec685a28fc08dc469216,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+4f4f1b76c451a58c = https://sni.skylee4.cloudns.ch/tset,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+b02d43478e310e25 = https://qybndbviblvt.us-west-1.clawcloudrun.com/api/v1/subscribe?token=5xwthvdjbvm1sbrwomlpcralcs5km568,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+sub 新 = https://sub-unify.pages.dev/sub?token=ZH&clash,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+4694451aa7f21701 = https://x.nn8qozmu.top/api/v1/client/new?token=68ac30d16c10768c22d70ca94bf7c28e,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+6717d69e4df0cdeb = https://xn--cp3a08l.com/api/v1/client/subscribe?token=b874d6bcb5a21f8c91d6b8097f665e65,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+d1117f2917238834 = https://liangxin.xyz/api/v1/liangxin?OwO=32c9ff5813c531425ca631c6e07fc216,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+musb 旧 = https://misub.ashe1.dpdns.org/profiles/003084e2-057b-4847-85f5-df166ab627be,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+部署 2 = https://ashe0.dpdns.org/cm?sub,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+ba29675b324b1d00 = https://upld.zone.id/uploads/w4i449iq/zyao2.txt,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false,flexible-sni=false
+[Proxy Chain]
+[Proxy Group]
+默认代理 = select,自动选择,香港手动节点,台湾手动节点,日本手动节点,韩国手动节点,美国手动节点,新加坡手动节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+自动选择 = select,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID_1.png
+故障转移 = select,美国故障策略,日本故障策略,香港故障策略,台湾故障策略,新加坡故障策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+漏网之鱼 = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+Speedtest = select,默认代理,全球手动节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png
+GitHub = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/GitHub.png
+Cloudflare = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cloudflare.png
+Instagram = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,美国自动策略,新加坡自动策略,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Instagram-02.png
+Tiktok = select,默认代理,美国手动节点,日本手动节点,台湾手动节点,新加坡手动节点,台湾自动策略,日本自动策略,美国自动策略,新加坡自动策略,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok_1.png
+Twitter = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+Whatsapp = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png
+Facebook = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png
+电报消息 = select,默认代理,香港自动策略,日本自动策略,美国自动策略,新加坡自动策略,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+Gemin = select,默认代理,故障转移,美国手动节点,日本手动节点,台湾手动节点,新加坡手动节点,日本自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/GoogleGemini.png
+ChatGPT = select,默认代理,故障转移,美国手动节点,日本手动节点,台湾手动节点,新加坡手动节点,日本自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ChatGPT.png
+人工智能 = select,默认代理,故障转移,美国手动节点,日本手动节点,台湾手动节点,新加坡手动节点,日本自动策略,美国自动策略,新加坡自动策略,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT3.png
+Google = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+YouTube = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+# Spotify 稳定策略：固定使用当前首个可用节点，仅故障时切换，避免 url-test 周期性换出口
+Spotify稳定 = fallback,全部,url = http://www.gstatic.com/generate_204,interval = 600,max-timeout = 5000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+# 默认选 Spotify稳定；仍保留 DIRECT / 手动地区，方便排障时人工切换
+Spotify = select,Spotify稳定,DIRECT,美国手动节点,日本手动节点,香港手动节点,新加坡手动节点,台湾手动节点,韩国手动节点,全球手动节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+Talkatone = select,默认代理,美国手动节点,美国自动策略,img-url = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Talkatone.png
+国外网站 = select,默认代理,香港自动策略,台湾自动策略,日本自动策略,韩国自动策略,美国自动策略,新加坡自动策略,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Nations.png
+香港手动节点 = select,香港,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+台湾手动节点 = select,台湾,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+日本手动节点 = select,日本,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+韩国手动节点 = select,韩国,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+美国手动节点 = select,美国,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+新加坡手动节点 = select,新加坡,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+全球手动节点 = select,全部,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+香港自动策略 = url-test,香港,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+台湾自动策略 = url-test,台湾,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+日本自动策略 = url-test,日本,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+韩国自动策略 = url-test,韩国,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+美国自动策略 = url-test,美国,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+新加坡自动策略 = url-test,新加坡,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 50,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+美国故障策略 = fallback,美国,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/US.png
+日本故障策略 = fallback,日本,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JP.png
+香港故障策略 = fallback,香港,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HK.png
+台湾故障策略 = fallback,台湾,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/CN.png
+新加坡故障策略 = fallback,新加坡,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SG.png
+
+[Remote Filter]
+香港 = NameRegex, FilterKey = "(?i)(港|HK|Hong)"
+台湾 = NameRegex, FilterKey = "(?i)(台|TW|Tai|中国)"
+日本 = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+韩国 = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓)"
+美国 = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+新加坡 = NameRegex, FilterKey = "(?i)(新加坡|坡|狮城|SG|Singapore)"
+全部 = NameRegex, FilterKey = "^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$"
+
+[Rule]
+DOMAIN,aedns.weixin.qq.com,DIRECT
+DOMAIN,dns.weixin.qq.com.cn,DIRECT
+DOMAIN,dns.weixin.qq.com,DIRECT
+# Spotify 核心 API/CDN 本地优先规则，避免被通用广告 REJECT 规则误命中
+DOMAIN-SUFFIX,spotify.com,Spotify
+DOMAIN-SUFFIX,scdn.co,Spotify
+DOMAIN-SUFFIX,pscdn.co,Spotify
+DOMAIN-SUFFIX,spotifycdn.com,Spotify
+DOMAIN-SUFFIX,spotifycdn.net,Spotify
+DOMAIN-SUFFIX,spotify-com.akamaized.net,Spotify
+DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify
+DOMAIN-KEYWORD,spotify,Spotify
+FINAL,漏网之鱼
+
+[Remote Rule]
+# Spotify 规则置于通用广告规则之前，避免重叠域名被 REJECT 抢先命中
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Spotify/Spotify.list, policy=Spotify, tag=Spotify, enabled=true
+https://adrules.top/adrules.list, policy=REJECT, tag=AD, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Rules/Reject.list, policy=REJECT, tag=广告列表, enabled=true
+https://rule.kelee.one/Loon/Lan.lsr, policy=DIRECT, tag=国内局域网, enabled=true
+https://kelee.one/Tool/Loon/Lsr/SpeedtestInternational.lsr, policy=Speedtest, tag=Speedtest, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GitHub/GitHub.list, policy=GitHub, tag=GitHub, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Cloudflare/Cloudflare.list, policy=Cloudflare, tag=Cloudflare, enabled=true
+https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/talkatone.list, policy=Talkatone, tag=Talkatone, enabled=true
+https://rule.kelee.one/Loon/Facebook.lsr, policy=Facebook, tag=Facebook, enabled=true
+https://rule.kelee.one/Loon/Whatsapp.lsr, policy=Whatsapp, tag=Whatsapp, enabled=true
+https://kelee.one/Tool/Loon/Lsr/TikTok.lsr, policy=Tiktok, tag=TikTok, enabled=true
+https://rule.kelee.one/Loon/Twitter.lsr, policy=Twitter, tag=Twitter, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Rules/YouTube.list, policy=YouTube, tag=Youtube, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=电报消息, tag=Telegram, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Instagram/Instagram.list, policy=Instagram, tag=Instagram, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Rules/Google.list, policy=Gemin, tag=Genmini, enabled=true
+https://rule.kelee.one/Loon/OpenAI.lsr, policy=ChatGPT, tag=ChatGPT, enabled=true
+https://kelee.one/Tool/Loon/Lsr/AI.lsr, policy=人工智能, tag=AI.lsr, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Google/Google.list, policy=Google, tag=Google分流, enabled=true
+https://rule.kelee.one/Loon/Proxy.lsr, policy=国外网站, tag=Proxy, enabled=true
+https://rule.kelee.one/Loon/ChinaMax.lsr, policy=DIRECT, tag=国内域名, enabled=true
+https://rule.kelee.one/Loon/ChinaASN.lsr, policy=DIRECT, tag=国内ASN, enabled=true
+https://kelee.one/Tool/Loon/Lsr/REGION_SPLITTER.lsr, policy=DIRECT, tag=geoip, enabled=true
+
+[Host]
+[Rewrite]
 [Script]
-http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-qx-header.js, timeout=60, tag=spotify-qx-header
+[Remote Script]
+[Plugin]
+https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx, enabled=true
+https://github.com/VirgilClyne/GetSomeFries/raw/main/plugin/HTTPDNS.Block.plugin, pin=true, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, pin=true, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Plugin/Kelee/General.plugin, tag=配置增强, enabled=true
+https://ddgksf2013.top/module/ScriptHub.Loon.plugin, enabled=true
+https://kelee.one/Tool/Loon/Lpx/PinDuoDuo_remove_ads.lpx, enabled=true
+http://script.hub/file/_start_/https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/CainiaoAds.conf/_end_/CainiaoAds.sgmodule?type=qx-rewrite&n=%E8%8F%9C%E9%B8%9F%E8%A3%B9%E8%A3%B9%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E5%BA%94%E7%94%A8%E5%87%80%E5%8C%96&headers=User-Agent:surge&del=true&jqEnabled=true&target=loon-plugin&category=ddgksf2013, img-url=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Cainiao.png, enabled=true
+https://kelee.one/Tool/Loon/Lpx/JD_remove_ads.lpx, enabled=true
+https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/release/loon/plugin/bilibili.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Taobao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Amap_remove_ads.lpx, enabled=true
+https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/split/partX/Xiaohongshu.lpx, img-url=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/RedPaper.png, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Plugin/Kelee/Node_detection_tool.plugin, enabled=true
+https://raw.githubusercontent.com/Roddy-D/Loon_plugins/refs/heads/main/plugin/iptest.lpx, enabled=true
+https://raw.githubusercontent.com/Roddy-D/Loon_plugins/refs/heads/main/plugin/nodetcpcheck.lpx, policy=默认代理, enabled=true
+https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Loon-parser.plugin, enabled=true
+https://github.com/Moli-X/Resources/raw/main/Sub-Store/SubStore.plugin, policy=默认代理, enabled=true
+https://github.com/Moli-X/Tool/raw/X/Loon/Plugin/Kelee/Script-Hub.plugin, policy=默认代理, enabled=true
+[Mitm]
+ca-p12 = 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
+ca-passphrase = LEX9U671
 
-http-response ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=60, tag=spotify-proto
-
-http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js, timeout=60, tag=spotify-json
-
-[MITM]
-hostname = spclient.wg.spotify.com, *spclient.spotify.com
+ca-passphrase = 
+hostname =
+skip-server-cert-verify = false
